@@ -1,0 +1,28 @@
+{
+  "id": "./",
+  "name": "Medisa Mobilya Yol Tarifi",
+  "short_name": "Yol Tarifi",
+  "description": "Medisa Mobilya konumuna Google veya Yandex haritalarla yol tarifi alın.",
+  "lang": "tr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080d16",
+  "theme_color": "#080d16",
+  "icons": [
+    {
+      "src": "./marker.png",
+      "sizes": "1024x1008",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./marker.png",
+      "sizes": "1024x1008",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
