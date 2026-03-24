@@ -11,18 +11,13 @@
   "orientation": "portrait-primary",
   "background_color": "#080d16",
   "theme_color": "#080d16",
+  "categories": ["navigation", "utilities"],
   "icons": [
     {
       "src": "./marker.png",
       "sizes": "1024x1008",
       "type": "image/png",
       "purpose": "any"
-    },
-    {
-      "src": "./marker.png",
-      "sizes": "1024x1008",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }
