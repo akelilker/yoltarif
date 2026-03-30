@@ -183,7 +183,7 @@
     .share-btn svg { width: 28px; height: 28px; fill: currentColor; }
     .share-btn.whatsapp { color: #25D366; }
 
-    /* Yeni Şık Bildirim Kutucuğu (Toast) Tasarımı */
+    /* Toast: kopyala sonrası, harita altı kırmızı çizgi ile "Paylaşmak İçin" arasında dikey ortalanır (JS) */
     .toast-msg {
       position: fixed;
       bottom: 30px;
@@ -198,7 +198,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       opacity: 0;
       visibility: hidden;
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
       z-index: 9999;
       pointer-events: none;
       white-space: nowrap;
@@ -206,7 +206,6 @@
     .toast-msg.show {
       opacity: 1;
       visibility: visible;
-      bottom: 50px;
     }
 
     @media (min-width: 769px) {
@@ -295,17 +294,49 @@
   <div id="toast" class="toast-msg">Bağlantı kopyalandı!</div>
 
   <script>
+    function positionShareToast(toast) {
+      toast.style.top = "";
+      toast.style.bottom = "";
+      toast.style.transform = "";
+      var divider = document.querySelector(".red-divider--after-maps");
+      var label = document.querySelector(".share-title");
+      if (divider && label) {
+        var db = divider.getBoundingClientRect().bottom;
+        var lt = label.getBoundingClientRect().top;
+        if (lt > db + 2) {
+          var mid = (db + lt) / 2;
+          toast.style.bottom = "auto";
+          toast.style.top = mid + "px";
+          toast.style.transform = "translate(-50%, -50%)";
+          return;
+        }
+      }
+      toast.style.bottom = "calc(24px + env(safe-area-inset-bottom, 0px))";
+      toast.style.transform = "translateX(-50%)";
+    }
+
+    function resetToastPlacement(toast) {
+      toast.style.top = "";
+      toast.style.bottom = "";
+      toast.style.transform = "";
+    }
+
+    function showShareToast(message) {
+      var toast = document.getElementById("toast");
+      toast.textContent = message;
+      positionShareToast(toast);
+      toast.classList.add("show");
+      setTimeout(function () {
+        toast.classList.remove("show");
+        resetToastPlacement(toast);
+      }, 2500);
+    }
+
     function copyLink() {
-      navigator.clipboard.writeText(window.location.href).then(function() {
-        var toast = document.getElementById("toast");
-        toast.textContent = "Bağlantı kopyalandı!";
-        toast.classList.add("show");
-        setTimeout(function(){ toast.classList.remove("show"); }, 2500);
-      }).catch(function() {
-        var toast = document.getElementById("toast");
-        toast.textContent = "Kopyalama başarısız!";
-        toast.classList.add("show");
-        setTimeout(function(){ toast.classList.remove("show"); }, 2500);
+      navigator.clipboard.writeText(window.location.href).then(function () {
+        showShareToast("Bağlantı kopyalandı!");
+      }).catch(function () {
+        showShareToast("Kopyalama başarısız!");
       });
     }
 
