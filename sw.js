@@ -1,4 +1,4 @@
-const VERSION = 'km-v15';
+const VERSION = 'km-v16';
 const PRECACHE = [
   './',
   './index.html',
@@ -8,7 +8,7 @@ const PRECACHE = [
   './apple-touch-icon.png',
   './icon-192.png',
   './icon-512.png',
-  './medisa-magaza.png',
+  './fabrika.jpg',
   './google-maps.png',
   './yandex.png'
 ];

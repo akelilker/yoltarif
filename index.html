@@ -146,13 +146,34 @@
       border-radius: 8px;
       overflow: hidden;
       line-height: 0;
+      position: relative;
+      background: #080d16;
+    }
+    .promo-between::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: url("./fabrika.jpg") center 40% / cover no-repeat;
+      filter: saturate(1.35) contrast(1.12) brightness(1.02);
+      opacity: 0.68;
+      clip-path: polygon(45% 34%, 68% 34%, 68% 58%, 45% 58%);
+    }
+    .promo-between::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, #080d16 0%, rgba(8,13,22,0.08) 12%, rgba(8,13,22,0.08) 88%, #080d16 100%),
+        linear-gradient(0deg, #080d16 0%, rgba(8,13,22,0.06) 14%, rgba(8,13,22,0.06) 86%, #080d16 100%);
     }
     .promo-between img {
       width: 100%;
-      height: auto;
-      max-height: clamp(64px, 20dvh, 168px);
-      object-fit: contain;
-      object-position: center bottom;
+      height: clamp(96px, 20dvh, 168px);
+      object-fit: cover;
+      object-position: center 40%;
       display: block;
       vertical-align: middle;
     }
@@ -222,14 +243,14 @@
         top: -12px;
         left: 0;
         right: 0;
-        width: min(48vw, 210px);
-        max-width: 210px;
+        width: min(78vw, 360px);
+        max-width: 360px;
         margin: 0 auto;
         z-index: 2;
         border-radius: 6px;
       }
       .promo-between img {
-        max-height: min(96px, 18dvh);
+        height: min(96px, 18dvh);
       }
       .logo {
         position: relative;
@@ -257,7 +278,7 @@
 <body>
   <main class="page-main">
   <div class="promo-between">
-    <img src="./medisa-magaza.png" alt="Medisa Mobilya mağaza" loading="eager" decoding="async" fetchpriority="high" />
+    <img src="./fabrika.jpg" alt="Medisa Mobilya fabrika" loading="eager" decoding="async" fetchpriority="high" />
   </div>
   <img alt="Medisa Mobilya Logo" class="logo" src="./logo-header2.svg" />
   <div class="route-block">
